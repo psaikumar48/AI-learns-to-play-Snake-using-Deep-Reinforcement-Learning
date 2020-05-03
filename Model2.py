@@ -95,10 +95,10 @@ while mloop:
         update_snake()
         if snake_head==Food:
             food()
+            Snake.append(snake_tail)
             Next_state_id=state_identification()
             reward=5
             Q[state_id, action_id] = Q[state_id, action_id] + LEARNING_RATE * (reward + GAMMA * np.max(Q[Next_state_id, :]) - Q[state_id, action_id])
-            Snake.append(snake_tail)
         elif snake_head not in grids or snake_head in snake_body:
             Next_state_id=state_identification()
             reward=-5
